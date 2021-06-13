@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{fe.busid}}</title>
+	<meta charset="utf-8">
+	<meta name="viweport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+<div class="container col-md-5">
+	<div class="card mt-5 text-center">
+		<h2 class="bg-dark text-light mx-4 my-2 text-center p-3 border rounded">Delete {{fe.busid}}'s</h2>
+		<form method="POST">
+			{% csrf_token %}
+			Are you sure you want to Delete Bus <b>"{{fe.busid}}"?</b><br>
+			<input type="submit" class="btn btn-success mb-2 mx-auto ml-2 mt-3" value="confirm">
+			<a href="{% url 'disbus' fe.id %}" class="btn btn-primary mb-2 mx-auto mt-3">Cancel</a>
+		</form>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+{% extends 'ta/base.html' %}
+{% load static %}
+{% block title %}Bus Ticket Booking{% endblock %}
+{% block content %}
+	{% if messages %}
+	{% for m in messages %}
+	<div class="alert alert-{{m.tags}} alert-dismissible">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<strong>{{m}}</strong>
+	</div>
+	{% endfor %}
+	{% endif %}
+	<div class="container">
+			<h2 class="p-3 text-white bg-primary my-2">Buses Information<span><a href="{% url 'addbus'%}" class="btn btn-primary" style="float: right;">Add Bus</a></span>
+			</h2>
+			<table class="table table-hover" border="1" style="width: 100%">
+				<tr>
+					<th>S.no</th>
+					<th>Number</th>
+					<th>Source</th>
+					<th>Destination</th>
+					<th>Timmings</th>
+					<th>Bus Type</th>
+					<th>Actions</th>
+				</tr>
+				{% for i in dis %}
+				<tr>
+					<td>{{forloop.counter}}</td>
+					<td>{{i.busid}}</td>
+					<td>{{i.source}}</td>
+					<td>{{i.destination}}</td>
+					<td>{{i.timmings}}</td>
+					<td>{{i.busclass}}</td>
+					<td>
+						<a href="{% url 'disbus' i.id %}" class="btn btn-primary">View Bus</a>
+						<a href="{% url 'upbus' i.id%}" class="btn btn-primary">Edit Bus</a>
+						<a href="{% url 'del' i.id%}" class="btn btn-primary">Remove Bus</a>
+						
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+	</div>
+{% endblock %}

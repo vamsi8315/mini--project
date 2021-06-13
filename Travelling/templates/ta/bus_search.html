@@ -1,0 +1,34 @@
+{% extends 'ta/base.html' %}
+{% load static %}
+{% block title %}Bus Searching{% endblock %}
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	{% for res in Data %}
+	<h2>Buses are searching from <b>{{res.source}}</b> to <b>{{res.destination}}</b></h2>
+	{{break}}
+	{% endfor %}
+	<div class="container">
+		<table class="table" border="1" style="width: 100%;">
+			<tr class="text-dark">
+				<td><b>S.no</b></td>
+				<td><b>Bus Number</b></td>
+				<td><b>Bus Image</b></td>
+				<td><b>Timmings</b></td>
+				<td><b>Bus Type</b></td>
+				<td><b>Actions</b></td>
+			</tr>
+			{% for resul in Data %}
+			<tr>
+				<td>{{forloop.counter}}</td>
+				<td>{{resul.busid}}</td>
+				<td><img src="{{resul.busim.url}}" height="20%" width="50%"></td>
+				<td>{{resul.timmings}}</td>
+				<td>{{resul.busclass}}</td>
+				<td><a href="{% url 'bookticket' resul.id %}" class="btn btn-primary">BookTicket</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>	
+</form>
+{% endblock%}

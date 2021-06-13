@@ -1,0 +1,40 @@
+{% extends 'ta/base.html' %}
+{% load static %}
+{% block title %}Bus Ticket Booking{% endblock %}
+{% block content %}
+	{% if messages %}
+	{% for m in messages %}
+	<div class="alert alert-{{m.tags}} alert-dismissible">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<strong>{{m}}</strong>
+	</div>
+	{% endfor %}
+	{% endif %}
+<h2>Bus Adding Page</h2>
+<div class="container">
+	<div class="card mt-4 mx-5 shadow-md">
+		<div class="card-body">
+			<form method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<h2 class="p-3 bg-primary text-white text-center">Bus Registration</h2>
+				<table class="table  table-borderless">
+					{% for k in d %}
+					<tr>
+						<td>{{k}}</td>
+					</tr>
+					{% endfor %}
+					{% for m in fo %}
+					<tr>
+						<td>{{m.distance}}</td>
+					</tr>
+					<tr>
+						<td>{{m.cost}}</td>
+					</tr>
+					{% endfor %}
+				</table>
+			<input type="submit" name="Add Bus" class="btn btn-primary mb-2 rounded"><br>
+			</form>
+		</div>
+	</div>
+</div> 
+{% endblock %}

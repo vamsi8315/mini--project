@@ -1,0 +1,18 @@
+{% extends 'ta/base.html' %}
+{% load static %}
+{% block title %}Dash Board {% endblock %}
+{% block content %}
+		{% if messages %}
+	{% for m in messages %}
+	<div class="alert alert-{{m.tags}} alert-dismissible">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<strong>{{m}}</strong>
+	</div>
+	{% endfor %}
+	{% endif %}
+	<div class="row col-md-4">
+		<div class="card">
+			<h2>No.of Tickets Booked in Pallevellugu </h2>
+		</div>		
+	</div>
+{% endblock %}

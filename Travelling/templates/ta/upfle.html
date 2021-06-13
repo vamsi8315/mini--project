@@ -1,0 +1,28 @@
+{% extends 'ta/base.html' %}
+{% load static %}
+{% block title %}Update profile {% endblock %}
+{% block content %}
+<div class="container">
+	<div class="card col-md-6 mx-auto mt-5 shadow-lg border-dark" style="border-radius:10px;">
+		<div class="card-body">
+			<h3 class="text-center">Update Profile</h3>
+			<form method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<table class="table">
+					{% for k in h %}
+					<tr>
+						<td>{{k}}</td>
+					</tr>
+					{% endfor %}
+					{% for m in u %}
+					<tr>
+						<td>{{m}}</td>
+					</tr>
+					{% endfor %}
+				</table>
+				<input type="submit" value="Save Changes" class="btn btn-success btn-block">
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

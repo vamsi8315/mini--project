@@ -1,0 +1,96 @@
+{% extends 'ta/base.html' %}
+{% load static %}
+{% block title %}Registeration{% endblock %} 
+{% block content %}
+<head>
+	<style type="text/css">
+	  	.border 
+  	{
+    	display: inline-block;
+    	width: 45%;
+    	height: 600px;
+    	margin: 85px;
+    	padding :20;
+    	margin-left: 25%;
+    	border-radius: 25px;
+    	box-shadow: 10px 10px 5px grey;
+  	}
+    </style>
+</head>
+<body style="background-color: snow;">
+	{% if messages %}
+	{% for m in messages %}
+	<div class="alert alert-{{m.tags}} alert-dismissible">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<strong>{{m}}</strong>
+	</div>
+	{% endfor %}
+	{% endif %}
+<div class="card border-primary border col-md-9 border-primary">
+	<h3 class="text-center mt-3 text-primary"><i class="fa fa-user"><b>&nbsp;Registration Form</b></i></h3><br>
+	<form method="post">
+		{% csrf_token %}
+		<!--<table class="table table-borderless mx-2">
+			{% for t in y %}
+			<tr>
+				<td><i class="fa fa-user"></i></td>
+				<td>{{t}}</td>
+			</tr>
+				{% endfor %}
+		</table>-->
+		<div style="width:85%">
+		<div class="p-3">
+			<table class="p-3">
+				<tr class="p-5">
+					<td class="p-3"><i class="fa fa-user"></i></td>
+					<td style="width: 100%;">{{y.username}}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="p-3">
+			<table class="p-3">
+				<tr class="p-3">
+					<td class="p-3"><i class="fas fa-user-edit"></i></td>
+					<td style="width: 100%;">{{y.first_name}}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="p-3">
+			<table>
+				<tr class="p-3">
+					<td class="p-3"><i class="fas fa-user-edit"></i></td>
+					<td style="width: 100%;">{{y.last_name}}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="p-3">
+			<table>
+				<tr class="p-3">
+					<td class="p-3"><i class="fa fa-envelope"></i></td>
+					<td style="width: 100%;">{{y.email}}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="p-3">
+			<table>
+				<tr class="p-3">
+					<td class="p-3"><i class="fa fa-lock"></i></td>
+					<td style="width: 100%;">{{y.password1}}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="p-3 mb-5">
+			<table>
+				<tr class="p-3">
+					<td class="p-3"><i class="fa fa-lock"></i></td>
+					<td style="width: 100%;">{{y.password2}}</td>
+				</tr>
+			</table>
+		</div>
+		</div>
+			<input type="submit" name="Register" class="btn btn-primary btn-block mb-2 rounded"><br>
+			<h6 style="margin-left: 80px;">Already have an account ? <a href="{% url 'log' %}">click here</a></h6>
+	</form>
+</div>
+</body>
+{% endblock %}

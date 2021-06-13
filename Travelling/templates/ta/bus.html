@@ -1,0 +1,59 @@
+{% extends 'ta/base.html' %}
+{% load static %}
+{% block title %}Bus Ticket Booking{% endblock %}
+{% block content %}
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bg {
+	background-image: url("{% static 'images/back.jpg' height:500px;width:200px%}");
+	background-repeat: no-repeat;
+
+}
+	  	.border 
+  	{
+    	display: inline-block;
+    	width: 90%;
+    	height: 600px;
+    	margin: 85px;
+    	padding :20;
+    	border-radius: 25px;
+    	box-shadow:5px 10px 10px 10px grey;
+  	}
+
+</style>
+<div class="bg">
+<div class="container ml-3">
+	<section>
+	<div class="row mt-5">
+		<div class="col-sm-8 col-md-8 col-lg-4 border mt-5">
+			<div class="mb-3 text-center">
+				<h3 class="text-blue">Book Your Tickets</h3>
+				<i class="fas fa-bus text-white" style="font-size: 50px;margin-top:15px;"></i><br>
+				<form method="post">
+					{% csrf_token %}
+					<input type="text" name="source" list="citylist" placeholder="&nbsp;&nbsp;FROM" style="margin-top:15%;height:40px;width: 250px;border-radius: 5px;border: none;" required="True"><br>
+					<datalist id="citylist">
+						{% for results in places %}
+						<option value="{{results.source}}">
+						{% endfor %}
+					</datalist>
+					<a href="#"><img src="{% static 'images/image.png' %}" style="height:20px;width:20;margin-top: 5%;"></a><br>
+					<input type="text" name="destination" list="citylists" placeholder="&nbsp;&nbsp;TO" style="margin-top:5%;height:40px;width: 250px;border-radius: 5px;border: none;" required="True"><br>
+					<datalist id="citylists">
+						{% for res in places %}
+							<option value="{{res.destination}}"></option>
+						{% endfor %}
+					</datalist>
+					<h4 class="text-dark text-center" style="height: 25px;width:5%;margin-top:12%;margin-left:10%;"><p class="text-white text-center">Date&Time</p>{{d.da}}</h4>
+					<button class="btn btn-primary" style="margin-top: 15%;">Find Buses</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	</section>
+</div>
+{% endblock%}

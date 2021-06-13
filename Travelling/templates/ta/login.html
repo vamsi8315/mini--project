@@ -1,0 +1,62 @@
+{% extends 'ta/base.html' %}
+{% load static %}
+{% block title %}Login {% endblock %}
+{% block content %}
+<style type="text/css">
+	   .bor
+    {
+      display: inline-block;
+      width: 30%;
+      height:auto;
+      margin-top: 6%;
+      margin-left: 33%;
+      margin-right: 25%;
+      border-radius:25px;
+      box-shadow: 10px 10px 5px grey;
+    }
+    .bord 
+    {
+      display: inline-block;
+      width: 45%;
+      height: 600px;
+      margin: 20px;
+      margin-left: 25%;
+      border-radius: 25px;
+      box-shadow: 10px 10px 5px grey;
+    }
+</style>
+<body style="background-color: snow;">
+	{% if messages %}
+	{% for m in messages %}
+	<div class="alert alert-{{m.tags}} alert-dismissible">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<strong>{{m}}</strong>
+	</div>
+	{% endfor %}
+	{% endif %}
+	<div class="card border-primary bor col-md-12 border-primary">
+	<h3 class="text-center mt-3 text-primary"><i class="fa fa-user"><b>&nbsp;Login</b></i></h3>
+	<img src="{% static 'images/employee.png'%}" style="margin-left: 20%"><br>
+		<form method="POST">
+			{% csrf_token %}
+			<!--{{form.as_p}}-->
+			<div>
+				<table>
+					<tr class="p-3">
+						<td class="p-4"><i class="fa fa-user" style="font-size: 24px"></i></td>
+						<td><input type="text" name="username" placeholder="Enter username" class="form-control my-2" style="width: 150%;"></td>
+					</tr>
+				</table>
+			</div>
+			<table>
+				<tr>
+					<td class="p-4"><i class="fa fa-lock" style="font-size: 24px"></i></td>
+					<td><input type="password" name="password" placeholder="Enter password" class="form-control my-2" style="width: 150%;"></td>
+				</tr>
+			</table>
+			<input type="submit" name="Login" class="btn btn-block bg-success text-white p-3 mt-3">
+		</form>
+		<h6 style="margin-left: 80px;" class="p-3">Don't have an accout ? <a href="{% url 'rg' %}">click here</a></h6>
+	</div>
+</body>
+{% endblock %}

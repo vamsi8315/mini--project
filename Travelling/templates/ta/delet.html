@@ -1,0 +1,16 @@
+{% extends 'ta/base.html' %}
+{% load static %}
+{% block title %}Bus Ticket Booking{% endblock %}
+{% block content %}
+<div class="container col-md-5">
+	<div class="card mt-5 text-center">
+		<h2 class="bg-dark text-light ">Delete {{user.username}}'s Ticket</h2>
+		<form method="POST">
+			{% csrf_token %}
+			Are you sure you want to Delete Ticket <b>"{{fe.pname}}"?</b><br>
+			<input type="submit" class="btn btn-success mb-2 mx-auto ml-2 mt-3" value="confirm">
+			<a href="{% url 'pasdata' %}" class="btn btn-primary mb-2 mx-auto mt-3">Cancel</a>
+		</form>
+	</div>
+</div>
+{% endblock %}

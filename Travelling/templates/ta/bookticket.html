@@ -1,0 +1,147 @@
+{% extends 'ta/base.html' %}
+{% load static %}
+{% block title %}Book Your Tickets{% endblock %}
+{% block content %}
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+}
+.bg {
+
+  background-image: url("{% static 'images/bus.jpg' %}");
+
+
+}
+	  	.border 
+  	{
+    	display: inline-block;
+    	width: 100%;
+    	height: 650px;
+    	margin: 80px;
+    	padding :30;
+    	border-radius: 30px;
+    	
+  
+  	}
+
+</style>
+<div class="bg">
+<div class="container ml-3">
+	<section>
+	<div class="row mt-5">
+		<div class="col-sm-8 col-md-8 col-lg-4 border mt-5" style="background-color:skyblue">
+			<div class="mb-3 text-center">
+				<h3 class="text-white">Bus Details</h3>
+		<img src="{{bot.busim.url}}" height="150px" width="100%" style="border-radius: 20px;">
+		<table class="table table-borderless hover mt-5 col-md-8" style="font-size: 18px;opacity: 1.0;border-radius: 25px;">
+					<tr>
+						<td class="success"><b>Bus Number:</b></td>
+						<td class="success">{{bot.busid}}</td>
+					</tr>
+					<tr>
+						<td class="success"><b>Source : </td>
+						<td class="success">{{bot.source}}</td>
+					</tr>
+					<tr>
+						<td class="success"><b>Destination : </td>
+						<td class="success">{{bot.destination}}</td>
+					</tr>
+					<tr>
+						<td class="success"><b>Bus Type : </b></td>
+						<td class="success">{{bot.busclass}}</td>
+					</tr>
+					<tr>
+						<td class="success"><b>Bus Timming:</b></td>
+						<td class="success">{{bot.timmings}}</td>
+					</tr>
+					<tr>
+						<td class="success"><b>Bus Distance:</b></td>
+						<td class="success">{{bot.distance}}</td>
+					</tr>
+					<tr>
+						<td class="info"><b>Bus charge :</b></td>
+						<td class="info" style="color:red;font-size:20px">₹ {{bot.cost}}</td>
+					</tr>
+				</table>
+				
+			</div>
+		</div>
+		<div class="col-sm-8 col-md-8 col-lg-4 border mt-5" style="background-color:skyblue">
+			<div class="mb-3 text-center">
+				<h3 class="text-white">Account Details</h3>
+		<img src="{{user.impfle.im.url}}" height="150px" width="70%" style="border-radius: 15px;">
+		<table class="table table-borderless hover mt-5 col-md-8" style="font-size: 17px;border-radius: 15px;">
+					<tr>
+						<td class="success"><b>User Name:</b></td>
+						<td class="success">{{user.username}}</td>
+					</tr>
+					<tr>
+						<td class="success"><b>Email ID: </td>
+						<td class="success">{{user.email}}</td>
+					</tr>
+					<tr>
+						<td class="success"><b>Phone No:</b></td>
+						<td class="success">{{user.impfle.mb}}</td>
+					</tr>
+					<tr>
+						<td class="success"><b>Gender:</b></td>
+						<td class="success">{{user.impfle.gender}}</td>
+					</tr>
+					<tr>
+						<td class="info"><b>Bus charge:</b></td>
+						<td class="info" style="color:red;font-size:25px">₹ {{bot.cost}}</td>
+					</tr>
+				</table>
+				<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#login">Make Payment</button>
+			</div>
+		</div>
+	</div>
+	</section>
+</div>
+<div class="container mt-5 mr-5 danger" align="center">
+	<div class="modal" id="login" align="center">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header bg-success">
+					<h2 class="modal-title text-white text-center"><b>Make Transaction</b></h2>
+					<button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body bg-primary">
+					<form method="post">
+				{% csrf_token %}
+				<table class="table">
+					<tr>
+						<td><b>Passanger Name:</b></td>
+						<td>{{d.pname}}</td>
+					</tr>
+					<tr>
+						<td><b>Source:</b></td>
+						<td>{{d.sorce}}</td>
+					</tr>
+					<tr>
+						<td><b>Destination:</b></td>
+						<td>{{d.destnation}}</td>
+					</tr>
+					<tr>
+						<td><b>Bus Number:</b></td>
+						<td>{{d.busid}}</td>
+					</tr>
+					<tr>
+						<td><b>Bus Type:</b></td>
+						<td>{{d.bustype}}</td>
+					</tr>
+					<tr>
+						<td><b>Date:</b></td>
+						<td>{{d.date}}</td>
+					</tr>
+				</table>
+				<button class="btn btn-info ml-5" type="button" data-dismiss="modal">cancel</button>
+						<input type="submit" value="confirm" class="btn btn-primary">
+			</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock%}

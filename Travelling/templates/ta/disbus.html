@@ -1,0 +1,72 @@
+{% extends 'ta/base.html' %}
+{% load static %}
+{% block title %}Bus Ticket Booking{% endblock %}
+{% block content %}
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bg {
+
+  background-image: url("{% static 'images/bus.jpg' %}");
+    background-repeat: no-repeat;
+
+}
+	  	.border 
+  	{
+    	display: inline-block;
+    	width: 90%;
+    	height: 600px;
+    	margin: 85px;
+    	padding :20;
+    	border-radius: 25px;
+    	box-shadow:5px 10px 10px 10px grey;
+  	}
+
+</style>
+<div class="bg">
+<div class="container">
+	<section>
+	<div class="row mt-5">
+		<div class="col-sm-7 col-md-8 col-lg-4 border mt-5">
+			<div class="mb-3 text-center">
+				<h3 class="text-white">Bus Details</h3>
+		<img src="{{vi.busim.url}}" height="150px" width="60%" style="border-radius: 15px;">
+		<table class="table table-borderless hover mt-5 col-md-8" style="font-size: 18px;opacity: 1.0;border-radius: 15px;">
+					<tr>
+						<td class="primary"><b>Bus Number:</b></td>
+						<td class="primary">{{vi.busid}}</td>
+					</tr>
+					<tr>
+						<td class="primary"><b>Source : </td>
+						<td class="primary">{{vi.source}}</td>
+					</tr>
+					<tr>
+						<td class="primary"><b>Destination : </td>
+						<td class="primary">{{vi.destination}}</td>
+					</tr>
+					<tr>
+						<td class="primary"><b>Bus Type : </b></td>
+						<td class="primary">{{vi.busclass}}</td>
+					</tr>
+					<tr>
+						<td class="primary"><b>Bus Timming:</b></td>
+						<td class="primary">{{vi.timmings}}</td>
+					</tr>
+					<tr>
+						<td class="primary"><b>Bus Distance:</b></td>
+						<td class="primary">{{vi.distance}}</td>
+					</tr>
+					<tr>
+						<td class="primary"><b>Bus charges :</b></td>
+						<td class="primary" style="color:red;font-size:25px">₹ {{vi.cost}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	</section>
+</div>
+{% endblock%}

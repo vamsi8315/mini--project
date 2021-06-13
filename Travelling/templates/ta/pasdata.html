@@ -1,0 +1,43 @@
+{% extends 'ta/base.html' %}
+{% load static %}
+{% block title %}Bus Ticket Booking{% endblock %}
+{% block content %}
+{% if messages %}
+	{% for m in messages %}
+	<div class="alert alert-{{m.tags}} alert-dismissible">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<strong>{{m}}</strong>
+	</div>
+	{% endfor %}
+	{% endif %}
+<div class="container">
+			<h2 class="p-3 text-white bg-primary my-2">My Bookings<span><a href="{% url 'bus'%}" class="btn btn-primary" style="float: right;">Book Ticket</a></span>
+			</h2>
+			<table class="table table-hover" border="1" style="width: 100%">
+				<tr class="bg-dark text-white">
+					<th>S.no</th>
+					<th>Passenger Name</th>
+					<th>Source</th>
+					<th>Destination</th>
+					<th>Bus Number</th>
+					<th>Bus Type</th>
+					<th>Date</th>
+					<th>Actions</th>
+				</tr>
+				{% for i in y %}
+				<tr class="text-dark bg-white">
+					<td>{{forloop.counter}}</td>
+					<td>{{i.pname}}</td>
+					<td>{{i.sorce}}</td>
+					<td>{{i.destnation}}</td>
+					<td>{{i.busid}}</td>
+					<td>{{i.bustype}}</td>
+					<td>{{i.date}}</td>
+					<td>
+						<a href="{% url 'dele' i.id %}" class="btn btn-danger">Delete</a>
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+	</div>
+{% endblock %}
